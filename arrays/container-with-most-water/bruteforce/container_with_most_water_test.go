@@ -1,4 +1,4 @@
-package container_with_mosth_water
+package bruteforce
 
 import "testing"
 

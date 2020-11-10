@@ -1,4 +1,4 @@
-package container_with_mosth_water
+package bruteforce
 
 func MaxArea(height []int) int {
 	var maxArea int

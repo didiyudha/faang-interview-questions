@@ -3,6 +3,7 @@ package bruteforce
 func GetTotalWater(heights []int) int {
 	var totalWater int
 	for p := 0; p < len(heights); p++ {
+
 		leftP := p
 		rightP := p
 		var maxLeft int

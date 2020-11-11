@@ -2,12 +2,14 @@ package bruteforce
 
 func GetTotalWater(heights []int) int {
 	var totalWater int
-	for p := 0; p < len(heights); p++ {
+
+	for p, h := range heights{
+
+		var maxLeft int
+		var maxRight int
 
 		leftP := p
 		rightP := p
-		var maxLeft int
-		var maxRight int
 
 		for leftP >= 0 {
 			maxLeft = Max(maxLeft, heights[leftP])
@@ -19,18 +21,16 @@ func GetTotalWater(heights []int) int {
 			rightP++
 		}
 
-		currentWater := Min(maxLeft, maxRight) - heights[p]
-
-		if currentWater >= 0 {
-			totalWater += currentWater
+		currentWaterArea := Min(maxLeft, maxRight) - h
+		if currentWaterArea > 0 {
+			totalWater += currentWaterArea
 		}
-
 	}
 
 	return totalWater
 }
 
-func Max(nums ...int)  (max int){
+func Max(nums ...int) (max int) {
 	for _, n := range nums {
 		if n > max {
 			max = n
@@ -39,7 +39,7 @@ func Max(nums ...int)  (max int){
 	return
 }
 
-func Min(nums ...int)  (min int){
+func Min(nums ...int) (min int) {
 	for i, n := range nums {
 		if i == 0 {
 			min = n

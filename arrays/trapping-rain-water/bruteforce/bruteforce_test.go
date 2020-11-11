@@ -14,9 +14,9 @@ func TestGetTotalWater(t *testing.T) {
 		{
 			name: "should return 8",
 			args: args{
-				heights: []int{0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2},
+				heights: []int{0, 2, 0, 0, 1, 0, 2},
 			},
-			want: 8,
+			want: 7,
 		},
 	}
 	for _, tt := range tests {

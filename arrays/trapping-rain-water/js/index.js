@@ -30,6 +30,33 @@ function trapRainWater(arr) {
   
 }
 
+function optimalTrapRainWater(height) {
+  let totalArea = 0;
+  let maxLeft = 0, maxRight = 0;
+  let left = 0, right = height.length-1;
+
+  while (left < right) {
+    if (height[left] <= height[right]) {
+      if (height[left] > maxLeft) {
+        maxLeft = height[left];
+      } else {
+        totalArea += maxLeft-height[left];
+      }
+      left++
+    } else {
+      if (height[right] > maxRight) {
+        maxRight = height[right];
+      } else {
+        totalArea += maxRight - height[right];
+      }
+      right--;
+    }
+  }
+
+  return totalArea;
+}
+
 module.exports = {
   trapRainWater,
+  optimalTrapRainWater,
 };

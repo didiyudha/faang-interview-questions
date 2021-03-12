@@ -85,3 +85,40 @@ func TestBuild(t *testing.T) {
 		t.Logf("[PASS] Success %s => %s", tt.Str, tt.Result)
 	}
 }
+
+func TestBackspaceCompareOptimal(t *testing.T) {
+	tableTest := []struct {
+		S      string
+		T      string
+		Result bool
+	}{
+		{
+			S:      "ab#c",
+			T:      "ad#c",
+			Result: true,
+		},
+		{
+			S:      "ab##",
+			T:      "c#d#",
+			Result: true,
+		},
+		{
+			S:      "a##c",
+			T:      "#a#c",
+			Result: true,
+		},
+		{
+			S:      "a#c",
+			T:      "b",
+			Result: false,
+		},
+	}
+
+	for _, tt := range tableTest {
+		result := backspaceCompareOptimal(tt.S, tt.T)
+		if result != tt.Result {
+			t.Fatalf("Expected %v actual %v", tt.Result, result)
+		}
+		t.Log("[PASS] Success")
+	}
+}

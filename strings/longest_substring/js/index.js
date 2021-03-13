@@ -24,6 +24,30 @@ function longestSubstring(s) {
   return longest
 }
 
+function longestSubstrOptimal(s) {
+
+  let left = 0, total = 0;
+  let m = new Map();
+
+  for (let right = 0; right < s.length; right++) {
+      const character = s[right];
+      const prevSeen = m.get(character);
+
+      if (prevSeen >= left) {
+          left = prevSeen + 1;
+      }
+
+      m.set(character, right);
+      const currentLen = right - left + 1;
+      total = Math.max(currentLen, total);
+  }
+
+  return total;
+  
+};
+
+
 module.exports = {
   longestSubstring,
+  longestSubstrOptimal,
 };

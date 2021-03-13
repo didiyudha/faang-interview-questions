@@ -1,6 +1,9 @@
 package main
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 
@@ -29,6 +32,29 @@ func longestSubstr(s string) int {
 	}
 
 	return longestSubstr
+}
+
+func longestSubstrOptimal(s string) (total int) {
+	var left int
+	m := make(map[string]int)
+	arr := strings.Split(s, "")
+	fmt.Println("arr: ", arr)
+
+	for right := 0; right < len(arr); right++ {
+		currentChar := arr[right]
+		prevSeen, ok := m[currentChar]
+		if ok && prevSeen >= left {
+			left = prevSeen + 1
+		}
+		m[currentChar] = right
+		currentLen := right - left + 1
+		fmt.Println("left: ", left)
+		fmt.Println("right: ", right)
+		fmt.Println("current len: ", currentLen)
+		total = Max(total, currentLen)
+	}
+
+	return total
 }
 
 func Max(numbers ...int) int {

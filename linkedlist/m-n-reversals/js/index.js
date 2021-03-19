@@ -6,6 +6,7 @@ class Node {
 }
 
 class LinkedList {
+  
   constructor(head=null) {
     this.head = head;
   }
@@ -53,24 +54,37 @@ class LinkedList {
 
 function MNReversals(linkedList, m, n) {
 
-  if (m >= n) {
-    return
+  let prevBeforeStart = null;
+  let currentNode = linkedList.head;
+  let tail = linkedList.head;
+  let counter = 1;
+
+  while(counter < m) {
+    prevBeforeStart = currentNode;
+    tail = tail.next;
+    currentNode = currentNode.next;
+    counter++;
   }
 
-  let lowerBoundIndex = m;
-  let node = linkedList.getAt(m);
-  let prev = linkedList.getAt(m-1);
+  let tempNode = null;
 
-  while(m <= n) {
-    const nextNode = node.next;
-    node.next = prev;
-    prev = node;
-    node = nextNode;
-    m++;
+  while (counter >= m && counter <= n) {
+    const next = currentNode.next;
+    currentNode.next = tempNode;
+    tempNode = currentNode;
+    currentNode = next;
+    counter++;
+  }
+
+  tail.next = currentNode;
+
+  if (prevBeforeStart === null) {
+    linkedList.head = tempNode
+  } else {
+    prevBeforeStart.next = tempNode;
   }
   
-  linkedList.getAt(lowerBoundIndex-1).next = prev;
-  linkedList.getAt(n).next = node;
+
 }
 
 module.exports = {

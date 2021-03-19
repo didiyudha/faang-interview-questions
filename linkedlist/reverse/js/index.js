@@ -52,17 +52,18 @@ class LinkedList {
 }
 
 function reverseLinkedList(linkedList) {
+  let previous = null;
   let node = linkedList.head;
-  let prev = null;
 
   while(node) {
-    const nextNode = node.next;
-    node.next = prev;
-    prev = node;
-    node = nextNode;
+    const next = node.next;
+    node.next = previous;
+    previous = node;
+    node = next;
   }
 
-  linkedList.head = prev;
+  linkedList.head = previous;
+  
 }
 
 module.exports = {
